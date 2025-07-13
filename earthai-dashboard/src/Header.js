@@ -18,10 +18,10 @@ const Header = () => {
     }`;
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 shadow-md bg-white/70 backdrop-blur-md border-b border-gray-200">
+    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 shadow-md bg-white backdrop-blur-md border-b border-gray-200">
       {/* Logo & Title */}
       <div className="flex items-center space-x-3">
-        <img src="/logo_main.png" alt="Logo" className="h-9 w-9" />
+        <img src="/GHG_logo.png" alt="Logo" className="h-9 w-9" />
         <div>
           <h1 className="text-xl font-extrabold text-green-700 tracking-wide">GHG-FuseNet</h1>
           <p className="text-xs text-gray-500 -mt-1">Real-time Environmental Monitoring</p>

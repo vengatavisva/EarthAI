@@ -8,7 +8,7 @@ const About = () => {
     >
       <div className="max-w-6xl mx-auto space-y-10">
         {/* Header */}
-        <h2 className="text-3xl font-bold text-green-700 text-center">About GHG-FuseNet</h2>
+        <h2 className="text-3xl font-bold text-black-700 text-center">About GHG-FuseNet</h2>
 
         <p className="text-lg leading-relaxed text-gray-700 text-center max-w-3xl mx-auto">
           <strong>GHG-FuseNet</strong> is an innovative real-time environmental monitoring platform that predicts
@@ -41,85 +41,138 @@ const About = () => {
 
         {/* AI Model Architecture */}
         <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-center text-green-700 mb-4">Advanced AI Model Architecture</h3>
+          <h3 className="text-2xl font-semibold text-center text-black-700 mb-4 flex items-center justify-center gap-2">
+            <span>🌿</span> Advanced AI Model Architecture
+          </h3>
           <p className="text-center text-gray-600 max-w-4xl mx-auto">
             Our cutting-edge machine learning system integrates multi-source satellite data, real-time weather patterns, and temporal
             analysis to deliver precise greenhouse gas predictions with unprecedented accuracy.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mt-8">
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h4 className="text-green-600 font-semibold mb-2">Model Architecture</h4>
-              <p><strong>Random Forest Regressor</strong><br />Ensemble learning with superior accuracy</p>
-              <ul className="text-sm mt-3 text-gray-600">
-                <li>• Estimators: 100 Trees</li>
-                <li>• Cross Validation: 5-Fold</li>
-                <li>• Feature Importance: Enabled</li>
-              </ul>
+            {/* Model Architecture Card */}
+            <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+              <h4 className="text-green-700 font-semibold mb-2 flex items-center gap-1">🗂️ Model Architecture</h4>
+              <div className="bg-green-50 p-2 rounded-md mb-3">
+                <p className="text-green-700 font-semibold">Random Forest Regressor</p>
+                <p className="text-xs text-gray-600">Ensemble learning with superior accuracy</p>
+              </div>
+              <div className="text-sm text-gray-700 space-y-1 mt-2">
+                <div className="flex justify-between border-b py-1">
+                  <span>Estimators</span>
+                  <span className="font-medium text-gray-800">100 Trees</span>
+                </div>
+                <div className="flex justify-between border-b py-1">
+                  <span>Cross Validation</span>
+                  <span className="font-medium text-gray-800">5-Fold</span>
+                </div>
+                <div className="flex justify-between py-1">
+                  <span>Feature Importance</span>
+                  <span className="font-medium text-gray-800">Enabled</span>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h4 className="text-green-600 font-semibold mb-2">Input Features</h4>
-              <ul className="text-sm text-gray-600">
-                <li><strong>Satellite Data</strong>: Fire Count, FRP, Brightness & Confidence</li>
-                <li><strong>Weather Data</strong>: Temperature, Humidity, Wind Speed & Pressure</li>
-                <li><strong>Temporal Factors</strong>: Time of Day, Day of Week</li>
-              </ul>
+            {/* Input Features Card */}
+            <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+              <h4 className="text-green-700 font-semibold mb-2 flex items-center gap-1">🛰️ Input Features</h4>
+              <div className="text-sm text-gray-700 space-y-2">
+                <div>
+                  <p className="font-medium text-gray-800">Satellite Data</p>
+                  <ul className="list-disc ml-5 text-gray-600">
+                    <li>Fire Count & FRP</li>
+                    <li>Brightness & Confidence</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-gray-800">Weather Data</p>
+                  <ul className="list-disc ml-5 text-gray-600">
+                    <li>Temperature & Humidity</li>
+                    <li>Wind Speed & Pressure</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-gray-800">Temporal Factors</p>
+                  <ul className="list-disc ml-5 text-gray-600">
+                    <li>Time of Day & Day of Year</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6">
-              <h4 className="text-green-600 font-semibold mb-2">Performance Metrics</h4>
-              <p className="text-sm text-gray-600">Prediction Accuracy:</p>
-              <ul className="text-sm text-gray-600 mt-2">
-                <li>CO₂ R²: <strong className="text-green-700">0.94</strong></li>
-                <li>NO₂ R²: <strong className="text-blue-700">0.89</strong></li>
-              </ul>
-              <p className="text-sm text-gray-600 mt-4">Status Thresholds:</p>
-              <ul className="text-sm text-gray-600">
-                <li>CO₂ Warning: 400 ppm</li>
-                <li>CO₂ Critical: 450 ppm</li>
-                <li>NO₂ Warning: 40 ppb</li>
-              </ul>
+            {/* Performance Metrics Card */}
+            <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+              <h4 className="text-green-700 font-semibold mb-2 flex items-center gap-1">📈 Performance Metrics</h4>
+              <div className="text-sm text-gray-700 space-y-3">
+                <div>
+                  <p className="text-gray-600 mb-1">Prediction Accuracy</p>
+                  <div className="flex items-center justify-between mb-1">
+                    <span>CO₂ R²</span>
+                    <span className="font-medium text-green-700">0.94</span>
+                  </div>
+                  <div className="w-full bg-green-100 rounded-full h-2">
+                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '94%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center justify-between mb-1 mt-2">
+                    <span>NO₂ R²</span>
+                    <span className="font-medium text-blue-700">0.89</span>
+                  </div>
+                  <div className="w-full bg-blue-100 rounded-full h-2">
+                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '89%' }}></div>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <p className="text-gray-600 mb-1">Status Thresholds</p>
+                  <div className="text-xs space-y-1 text-gray-600">
+                    <p>CO₂ Warning: <span className="text-orange-600 font-medium">400 ppm</span></p>
+                    <p>CO₂ Critical: <span className="text-red-600 font-medium">450 ppm</span></p>
+                    <p>NO₂ Warning: <span className="text-orange-600 font-medium">40 ppb</span></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Suomi-NPP Satellite Section */}
-<div className="mt-16">
-  <h3 className="text-2xl font-semibold text-center text-green-700 mb-4">Advanced Satellite Integration</h3>
-  <p className="text-center text-gray-600 max-w-4xl mx-auto">
-    Leveraging state-of-the-art satellite technology and NASA's Fire Information for Resource Management System to provide real-time,
-    high-resolution environmental monitoring capabilities.
-  </p>
 
-  <div className="bg-white shadow-md rounded-xl p-6 mt-6 grid md:grid-cols-2 gap-6 items-center">
-    <div>
-      <h4 className="text-green-700 font-semibold text-lg mb-2">Suomi-NPP Satellite</h4>
-      <p className="text-sm text-gray-600">
-        The Suomi National Polar-orbiting Partnership satellite provides comprehensive 2x daily global coverage, 
-        serving as the backbone for fire and climate tracking worldwide. Its VIIRS instrument enables thermal 
-        anomaly detection with unprecedented accuracy and reliability for environmental monitoring.
-      </p>
-      <div className="grid grid-cols-2 gap-4 mt-4">
-        <div className="text-center p-4 bg-green-50 rounded-xl border border-green-200">
-          <div className="text-xl font-bold text-green-700">2x</div>
-          <div className="text-sm text-gray-600">Daily Coverage</div>
+        {/* Suomi-NPP Satellite Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-semibold text-center text-black-700 mb-4">Advanced Satellite Integration</h3>
+          <p className="text-center text-gray-600 max-w-4xl mx-auto">
+            Leveraging state-of-the-art satellite technology and NASA's Fire Information for Resource Management System to provide real-time,
+            high-resolution environmental monitoring capabilities.
+          </p>
+
+          <div className="bg-white shadow-md rounded-xl p-6 mt-6 grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <h4 className="text-green-700 font-semibold text-lg mb-2">Suomi-NPP Satellite</h4>
+              <p className="text-sm text-gray-600">
+                The Suomi National Polar-orbiting Partnership satellite provides comprehensive 2x daily global coverage, 
+                serving as the backbone for fire and climate tracking worldwide. Its VIIRS instrument enables thermal 
+                anomaly detection with unprecedented accuracy and reliability for environmental monitoring.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className="text-center p-4 bg-green-50 rounded-xl border border-green-200">
+                  <div className="text-xl font-bold text-green-700">2x</div>
+                  <div className="text-sm text-gray-600">Daily Coverage</div>
+                </div>
+                <div className="text-center p-4 bg-green-50 rounded-xl border border-green-200">
+                  <div className="text-xl font-bold text-green-700">824km</div>
+                  <div className="text-sm text-gray-600">Orbital Altitude</div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src="/sat2.jpg" // Your actual uploaded path
+                alt="Suomi NPP Satellite"
+                className="rounded-lg shadow-md w-full max-w-md transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+          </div>
         </div>
-        <div className="text-center p-4 bg-blue-50 rounded-xl border border-blue-200">
-          <div className="text-xl font-bold text-blue-700">824km</div>
-          <div className="text-sm text-gray-600">Orbital Altitude</div>
-        </div>
-      </div>
-    </div>
-    <div className="flex justify-center">
-      <img
-        src="/sat2.jpg" // Your actual uploaded path
-        alt="Suomi NPP Satellite"
-        className="rounded-lg shadow-md w-full max-w-md transition-transform duration-300 hover:scale-105"
-      />
-    </div>
-  </div>
-</div>
 
 
         {/* VIIRS Instrument Section */}
@@ -151,16 +204,23 @@ const About = () => {
 
         {/* Meet the Developers */}
         <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-center text-green-700 mb-4">Meet the Developers</h3>
+          <h3 className="text-2xl font-semibold text-center text-black-700 mb-4">Meet the Developers</h3>
           <p className="text-center text-gray-600 max-w-4xl mx-auto">
             Our multidisciplinary team combines expertise in AI, web development, and environmental science to create cutting-edge monitoring solutions.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mt-8">
             <div className="bg-white rounded-xl p-6 shadow-md text-center">
-              <img src="/sudh.png" alt="Sudharsan" className="w-20 h-20 rounded-full mx-auto mb-4" />
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <div className="absolute inset-0 rounded-full bg-green-100"></div>
+                <img
+                  src="/sudh.png"
+                  alt="Sudharsan"
+                  className="relative w-24 h-24 rounded-full object-cover p-1"
+                />
+              </div>
               <h4 className="font-semibold text-lg">S. Sudharsan</h4>
-              <p className="text-green-600 text-sm mb-2">AI Model Developer</p>
+              <p className="text-green-600 text-sm mb-2">Machine Learning Developer</p>
               <p className="text-sm text-gray-600">
                 Built and trained the entire AI model, handled dataset integration, feature engineering, and deployment of real-time prediction logic.
               </p>
@@ -170,21 +230,35 @@ const About = () => {
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-md text-center">
-              <img src="/vis.jpg" alt="Vengata visva" className="w-20 h-20 rounded-full mx-auto mb-4" />
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <div className="absolute inset-0 rounded-full bg-green-100"></div>
+                <img
+                  src="/vis.jpg"
+                  alt="Vengata Visva"
+                  className="relative w-24 h-24 rounded-full object-cover p-1"
+                />
+              </div>
               <h4 className="font-semibold text-lg">S. Vengata Visva</h4>
-              <p className="text-green-600 text-sm mb-2">Fullstack Developer</p>
+              <p className="text-green-600 text-sm mb-2">Frontend Developer</p>
               <p className="text-sm text-gray-600">
                 Designed and developed the frontend UI using modern libraries, handled dashboard layout, graphing tools, and interactivity.
               </p>
               <div className="text-xs mt-2 text-gray-500 flex flex-wrap gap-1 justify-center">
-                <span>React</span><span>TypeScript</span><span>UI/UX</span><span>Node.js</span>
+                <span>React</span><span>TypeScript</span><span>UI/UX</span><span>Data Visualization</span>
               </div>
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-md text-center">
-              <img src="/roh.jpg" alt="Rohith" className="w-20 h-20 rounded-full mx-auto mb-4" />
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <div className="absolute inset-0 rounded-full bg-green-100"></div>
+                <img
+                  src="/roh.jpg"
+                  alt="Rohith"
+                  className="relative w-24 h-24 rounded-full object-cover p-1"
+                />
+              </div>
               <h4 className="font-semibold text-lg">B. Rohith</h4>
-              <p className="text-green-600 text-sm mb-2">Fullstack Developer</p>
+              <p className="text-green-600 text-sm mb-2">Backend Developer</p>
               <p className="text-sm text-gray-600">
                 Implemented FastAPI backend, integrated APIs, managed real-time data flow, and connected the ML model inference to the frontend.
               </p>
@@ -194,6 +268,7 @@ const About = () => {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

@@ -22,7 +22,7 @@ export default function CurrentLevelsChart({ data }) {
   ];
 
   return (
-    <div className="bg-gray-100 p-8 rounded-3xl shadow-2xl transition hover:shadow-xl">
+    <div className="bg-white p-8 rounded-3xl shadow-2xl transition hover:shadow-xl">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-1">
         🌿 Environmental Overview
       </h2>

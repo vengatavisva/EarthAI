@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 scroll-smooth">
+    <div className="min-h-screen bg-gray-100 text-gray-800 scroll-smooth">
       <Header />
 
       <main className="pt-28 px-4 space-y-6">
