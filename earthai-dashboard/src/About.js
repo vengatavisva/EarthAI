@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const About = () => {
+  useEffect(() => {
+    document.title = 'About | GHG-FuseNet';
+  }, []);
+
   return (
     <section
       id="about"
@@ -42,7 +46,7 @@ const About = () => {
         {/* AI Model Architecture */}
         <div className="mt-16">
           <h3 className="text-2xl font-semibold text-center text-black-700 mb-4 flex items-center justify-center gap-2">
-            <span>🌿</span> Advanced AI Model Architecture
+            Advanced AI Model Architecture
           </h3>
           <p className="text-center text-gray-600 max-w-4xl mx-auto">
             Our cutting-edge machine learning system integrates multi-source satellite data, real-time weather patterns, and temporal
@@ -244,7 +248,7 @@ const About = () => {
                 Designed and developed the frontend UI using modern libraries, handled dashboard layout, graphing tools, and interactivity.
               </p>
               <div className="text-xs mt-2 text-gray-500 flex flex-wrap gap-1 justify-center">
-                <span>React</span><span>TypeScript</span><span>UI/UX</span><span>Data Visualization</span>
+                <span>React</span><span>JavaScript</span><span>UI/UX</span><span>Node.js</span>
               </div>
             </div>
 

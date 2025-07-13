@@ -10,13 +10,26 @@ import {
   Target,
   Sun,
   Brain,
-  Leaf
+  Leaf,
+  AlertCircle,
+  Activity,
+  ShieldCheck
 } from 'lucide-react';
 
 export default function ResultsDashboard({ data }) {
   if (!data) return <div className="p-6 text-gray-700">No data available.</div>;
 
-  const { weather = {}, fire = {}, co2 = 0, no2 = 0, alerts = {} } = data;
+  const {
+    weather = {},
+    fire = {},
+    co2 = 0,
+    no2 = 0,
+    alerts = {},
+    ghg_causes = [],
+    ghg_effects = [],
+    precautions = [],
+    disaster_risks = {}
+  } = data;
 
   return (
     <div className="p-6 space-y-8 text-gray-800">
@@ -62,6 +75,43 @@ export default function ResultsDashboard({ data }) {
         />
       </div>
 
+      {/* GHG Insights Section */}
+      <GHGInsights
+        causes={ghg_causes}
+        effects={ghg_effects}
+        precautions={precautions}
+      />
+
+      {/* Disaster Intelligence Section */}
+      <SectionHeader icon={<AlertCircle size={24} />} title="Disaster Intelligence" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <RiskCard
+          title="🔥 Fire Risk"
+          description={disaster_risks.fire_risk?.reason || "No data available."}
+          status={disaster_risks.fire_risk?.status || "Unknown"}
+        />
+        <RiskCard
+          title="🌡️ Heatwave"
+          description={disaster_risks.heatwave?.reason || "No data available."}
+          status={disaster_risks.heatwave?.status || "Unknown"}
+        />
+        <RiskCard
+          title="🌪️ Storm Warning"
+          description={disaster_risks.storm_warning?.reason || "No data available."}
+          status={disaster_risks.storm_warning?.status || "Unknown"}
+        />
+        <RiskCard
+          title="🌵 Drought Alert"
+          description={disaster_risks.drought_alert?.reason || "No data available."}
+          status={disaster_risks.drought_alert?.status || "Unknown"}
+        />
+        <RiskCard
+          title="🌫️ Smog Alert"
+          description={disaster_risks.smog_alert?.reason || "No data available."}
+          status={disaster_risks.smog_alert?.status || "Unknown"}
+        />
+      </div>
+
       {/* Chart Section */}
       <CurrentLevelsChart data={data} />
     </div>
@@ -77,7 +127,6 @@ function SectionHeader({ icon, title }) {
     </h2>
   );
 }
-
 
 // Info Card
 function InfoCard({ title, value, icon }) {
@@ -102,8 +151,6 @@ function InfoCard({ title, value, icon }) {
     </div>
   );
 }
-
-
 
 // Prediction Card
 function PredictionCard({ title, value, icon, badge }) {
@@ -141,7 +188,73 @@ function PredictionCard({ title, value, icon, badge }) {
   );
 }
 
+// GHG Insights
+function GHGInsights({ causes = [], effects = [], precautions = [] }) {
+  if (causes.length === 0 && effects.length === 0 && precautions.length === 0) return null;
 
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <InsightCard
+        title="Causes"
+        icon={<AlertCircle size={20} />}
+        items={causes}
+        color="border-orange-400 bg-orange-50"
+      />
+      <InsightCard
+        title="Effects"
+        icon={<Activity size={20} />}
+        items={effects}
+        color="border-yellow-400 bg-yellow-50"
+      />
+      <InsightCard
+        title="Precautions"
+        icon={<ShieldCheck size={20} />}
+        items={precautions}
+        color="border-green-400 bg-green-50"
+      />
+    </div>
+  );
+}
+
+function InsightCard({ title, icon, items, color }) {
+  return (
+    <div className={`rounded-xl p-4 shadow-sm hover:shadow-md transition border ${color}`}>
+      <div className="flex items-center gap-2 mb-2 text-gray-800 font-semibold">
+        <span className="text-gray-600">{icon}</span>
+        {title}
+      </div>
+      <ul className="list-disc pl-5 text-gray-700 text-sm space-y-1">
+        {items.length > 0 ? (
+          items.map((item, idx) => <li key={idx}>{item}</li>)
+        ) : (
+          <li className="text-gray-500 italic">No data available.</li>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+// Risk Card
+function RiskCard({ title, description, status }) {
+  const badgeStyles = {
+    Alert: 'bg-red-100 text-red-700',
+    Caution: 'bg-orange-100 text-orange-700',
+    Safe: 'bg-green-100 text-green-700',
+    Unknown: 'bg-gray-100 text-gray-600'
+  };
+
+  return (
+    <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition border border-gray-200">
+      <div className="flex justify-between items-center mb-2">
+        <h4 className="font-semibold text-gray-800 text-md">{title}</h4>
+        <span className={`text-xs px-2 py-1 rounded-full ${badgeStyles[status] || 'bg-gray-100 text-gray-700'}`}>
+          {status}
+        </span>
+      </div>
+      <p className="text-sm text-gray-600">{description}</p>
+    </div>
+  );
+}
 
 // AQI Calculator
 function calculateAQI(co2 = 0, no2 = 0) {

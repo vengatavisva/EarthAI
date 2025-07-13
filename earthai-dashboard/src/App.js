@@ -1,5 +1,6 @@
 // src/App.js
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MapComponent from './MapComponent';
 import ResultsDashboard from './ResultsDashboard';
 import Header from './Header';
@@ -28,7 +29,10 @@ function App() {
     alerts: {
       co2: "⏳ Waiting...",
       no2: "⏳ Waiting..."
-    }
+    },
+    ghg_causes: ["📄 No causes detected yet. Please select a location."],
+    ghg_effects: ["💡 Effects will be displayed after prediction."],
+    precautions: ["🟢 General advice: Stay informed and check local updates."]
   });
 
   const [loading, setLoading] = useState(false);
@@ -53,20 +57,26 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800 scroll-smooth">
-      <Header />
+    <Router>
+      <div className="min-h-screen bg-gray-100 text-gray-800 scroll-smooth">
+        <Header />
 
-      <main className="pt-28 px-4 space-y-6">
-        {/* Add padding top for fixed header space */}
-        <MapComponent onSelect={handleMapClick} loading={loading} />
-        <ResultsDashboard data={data} />
-
-        {/* ✅ Wrapped About with section and id="about" for scroll linking */}
-        <section id="about">
-          <About />
-        </section>
-      </main>
-    </div>
+        <main className="pt-28 px-4 space-y-6">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <MapComponent onSelect={handleMapClick} loading={loading} />
+                  <ResultsDashboard data={data} />
+                </>
+              }
+            />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 

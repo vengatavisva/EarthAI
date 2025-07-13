@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+// src/Header.js
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const [active, setActive] = useState('home'); // default is "home"
+  const location = useLocation();
+  const [active, setActive] = useState('home');
 
   const handleClick = (section) => {
     setActive(section);
@@ -12,7 +15,7 @@ const Header = () => {
 
   const buttonStyle = (name) =>
     `px-5 py-2 rounded-md font-semibold shadow transition-all duration-300 ${
-      active === name
+      active === name || location.pathname === (name === 'home' ? '/' : `/${name}`)
         ? 'bg-gradient-to-r from-green-500 to-green-700 text-white'
         : 'bg-gray-200 hover:bg-gray-400 text-black'
     }`;
@@ -30,12 +33,12 @@ const Header = () => {
 
       {/* Nav Buttons */}
       <nav className="flex items-center space-x-4">
-        <button onClick={() => handleClick('home')} className={buttonStyle('home')}>
+        <Link to="/" onClick={() => handleClick('home')} className={buttonStyle('home')}>
           Home
-        </button>
-        <a href="#about" onClick={() => handleClick('about')} className={buttonStyle('about')}>
+        </Link>
+        <Link to="/about" onClick={() => handleClick('about')} className={buttonStyle('about')}>
           About
-        </a>
+        </Link>
       </nav>
     </header>
   );
