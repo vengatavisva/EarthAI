@@ -27,7 +27,7 @@ const Header = () => {
         <img src="/GHG_logo.png" alt="Logo" className="h-9 w-9" />
         <div>
           <h1 className="text-xl font-extrabold text-green-700 tracking-wide">GHG-FuseNet</h1>
-          <p className="text-xs text-gray-500 -mt-1">Real-time Environmental Monitoring</p>
+          <p className="text-xs text-gray-500 -mt-1">Live Forecasts. Smarter Alerts. Safer Cities.</p>
         </div>
       </div>
 

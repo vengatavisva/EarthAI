@@ -1,5 +1,6 @@
 import React from 'react';
 import CurrentLevelsChart from './CurrentLevelsChart';
+import NearbyPlacesMap from './NearbyPlacesMap';
 import {
   Thermometer,
   Droplets,
@@ -13,7 +14,7 @@ import {
   Leaf,
   AlertCircle,
   Activity,
-  ShieldCheck
+  ShieldCheck,
 } from 'lucide-react';
 
 export default function ResultsDashboard({ data }) {
@@ -28,7 +29,7 @@ export default function ResultsDashboard({ data }) {
     ghg_causes = [],
     ghg_effects = [],
     precautions = [],
-    disaster_risks = {}
+    disaster_risks = {},
   } = data;
 
   return (
@@ -81,7 +82,15 @@ export default function ResultsDashboard({ data }) {
         effects={ghg_effects}
         precautions={precautions}
       />
-
+      {/* Realtime Alerting System Title */}
+      <div className="text-center mt-8 mb-4">
+        <h2 className="text-3xl font-extrabold text-gray-900">
+          Realtime Alerting System
+        </h2>
+        <p className="mt-2 text-gray-600 text-lg">
+          Monitoring Key Threats to Health and Safety in Your Area
+        </p>
+      </div>
       {/* Disaster Intelligence Section */}
       <SectionHeader icon={<AlertCircle size={24} />} title="Disaster Intelligence" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -112,11 +121,51 @@ export default function ResultsDashboard({ data }) {
         />
       </div>
 
+      {/* Affected Nearby Places Section */}
+      <SectionHeader icon={<ShieldCheck size={24} />} title="Alerting Nearby Places" />
+      {data.affected_nearby_places && Object.keys(data.affected_nearby_places).length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {Object.entries(data.affected_nearby_places).map(([type, places]) => (
+            <div key={type}>
+              <h3 className="text-md font-semibold text-gray-700 capitalize mb-2">
+                {type === "school" ? "🏫 Schools" : type === "hospital" ? "🏥 Hospitals" : type}
+              </h3>
+              <ul className="space-y-2 text-sm text-gray-800">
+                {places.map((place, idx) => (
+                  <li
+                    key={idx}
+                    className="bg-white border border-gray-200 rounded-md px-4 py-2 shadow-sm hover:shadow-md transition"
+                  >
+                    <div className="font-medium">{place.name}</div>
+                    <div className="text-gray-500 text-xs">
+                      ({place.lat.toFixed(4)}, {place.lon.toFixed(4)}) | {place.distance_km} km away
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-500 italic mt-2">No affected nearby places found in this area.</p>
+      )}
+
+      {/* Map of Affected Nearby Places */}
+      {data.affected_nearby_places && Object.keys(data.affected_nearby_places).length > 0 && (
+        <NearbyPlacesMap
+          places={data.affected_nearby_places}
+          center={data.location}
+        />
+      )}
+
       {/* Chart Section */}
       <CurrentLevelsChart data={data} />
     </div>
   );
 }
+
+// Reusable Components...
+// (SectionHeader, InfoCard, PredictionCard, GHGInsights, InsightCard, RiskCard, calculateAQI remain unchanged from your code)
 
 // Section Header
 function SectionHeader({ icon, title }) {
